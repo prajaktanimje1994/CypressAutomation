@@ -16,6 +16,7 @@ describe('test1',()=>
     cy.get('#email').type(this.data.inputdata)
     cy.get('#phone').type(this.data.inputdata)
     cy.get('#textarea').type(this.data.inputdata)
+    cy.get('div.form-group label[for="gender"]').should('have.text','Gender:')
     
 
 }
