@@ -1,4 +1,5 @@
 /// <reference types="Cypress" />
+import Inputdata1 from '../../support/POMFolder/Inputdata1';
 
 describe('test1',()=>
 {
@@ -11,11 +12,11 @@ describe('test1',()=>
 });
     it('test1',function()
     {
-    cy.visit('https://testautomationpractice.blogspot.com/'),
-    cy.get('#name').type(this.data.inputdata)
-    cy.get('#email').type(this.data.inputdata)
-    cy.get('#phone').type(this.data.inputdata)
+    const Inputdata = new Inputdata1();
+    Inputdata.urlvisit('https://testautomationpractice.blogspot.com/');
+    Inputdata.inputdata2(this.data.inputdata);
     cy.get('#textarea').type(this.data.inputdata)
+    cy.log('test passed')
     
 
 }
