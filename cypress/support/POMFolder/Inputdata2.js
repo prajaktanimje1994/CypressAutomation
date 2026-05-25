@@ -8,7 +8,8 @@ class Inputdata2
     }
 
     datepicker(){
-    cy.get('input#datepicker').click()
+    //cy.get('input#datepicker').click()
+    cy.In()
     cy.get('table.ui-datepicker-calendar tbody tr td a[data-date="29"]').click()
     cy.get('a span.ui-icon-circle-triangle-w').dblclick()
     cy.get('table.ui-datepicker-calendar tbody tr td a[data-date="24"]').click()
