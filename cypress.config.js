@@ -9,4 +9,5 @@ module.exports = defineConfig({
       testIsolation: false;
     },
   },
+  specpattern: "cypress/e2e/AutomationTestPractice/*.cy.js"
 });
