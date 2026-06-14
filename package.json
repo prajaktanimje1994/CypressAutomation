@@ -7,7 +7,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "Smoke": "npx cypress run --spec 'cypress/e2e/AutomationTestPractice/Mochaframework.cy.js' --headed"
   },
   "dependencies": {
     "cypress": "^15.15.0"
