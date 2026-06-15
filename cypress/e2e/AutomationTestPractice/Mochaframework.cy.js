@@ -1,4 +1,5 @@
 /// <reference types="Cypress" />
+
 import Login from "../../support/POMFolder/Login"
 
 const ln = new Login()
