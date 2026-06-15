@@ -1,4 +1,8 @@
 {
   "username": "standard_user",
-  "password": "secret_sauce" 
+  "password": "secret_sauce",
+  "name" : "test",
+  "email" : "test@123",
+  "phone" : "1234567890",
+  "address" : "Test@123456"
 }
