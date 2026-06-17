@@ -26,6 +26,8 @@
 
 //Use to add custom commands
 
+
+
 Cypress.Commands.add('In',()=>
 {
     cy.get('input#datepicker').click()
