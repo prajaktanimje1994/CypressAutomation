@@ -3,11 +3,15 @@
 import Datepickers from "../../support/Datepickers"
 import AlertsandPopups from "../../support/POMFolder/AlertsandPopups"
 import Checkboxes from "../../support/POMFolder/Checkboxes"
+import Draganddrop from "../../support/POMFolder/Draganddrop"
 import Dropdowns from "../../support/POMFolder/Dropdowns"
 import Footerlinks from "../../support/POMFolder/Footerlinks"
 import Form from "../../support/POMFolder/Form"
 import Guielements from "../../support/POMFolder/Guielements"
+import Mousehoverdoubleclick from "../../support/POMFolder/Mousehoverdoubleclick"
+import Scrollingdropdown from "../../support/POMFolder/Scrollingdropdown"
 import Shadowdom from "../../support/POMFolder/Shadowdom"
+import SVGElements from "../../support/POMFolder/SVGElements"
 import Tabsanddynamicbutton from "../../support/POMFolder/Tabsanddynamicbutton"
 import Uploadfiles from "../../support/POMFolder/Uploadfiles"
 import WebTable from "../../support/POMFolder/WebTable"
@@ -23,6 +27,10 @@ const sd = new Shadowdom()
 const fl = new Footerlinks()
 const td = new Tabsanddynamicbutton()
 const ap = new AlertsandPopups()
+const mdc = new Mousehoverdoubleclick()
+const dad = new Draganddrop()
+const se = new SVGElements()
+const sdd = new Scrollingdropdown()
 describe('automation', () => {
     beforeEach(() => {
         cy.visit('https://testautomationpractice.blogspot.com/')
@@ -49,33 +57,29 @@ describe('automation', () => {
         dd.colors().select('yellow')
         dd.country().select('india')
         dd.sortedlist().select('deer')
-        dd.colors().should('contain.value','yellow')
-        
+        dd.colors().should('contain.value', 'yellow')
+
     })
 
-    it('datepicker',()=>
-    {
+    it('datepicker', () => {
         dp.datepicker1()
         dp.datepicker2()
         dp.datepicker3()
-        dp.message().should('have.text','You selected a range of 10 days.')
+        dp.message().should('have.text', 'You selected a range of 10 days.')
     })
 
-    it('uploadfiles',()=>
-    {
+    it('uploadfiles', () => {
         uf.singleupload().selectFile('cypress/fixtures/Testdata1.json')
-        uf.multiupload().selectFile(['cypress/fixtures/Test.text','cypress/fixtures/Testdata1.json'])
+        uf.multiupload().selectFile(['cypress/fixtures/Test.text', 'cypress/fixtures/Testdata1.json'])
     })
 
-    it('webtable',()=>
-    {
+    it('webtable', () => {
         wt.staticwebtable()
         wt.dynamicWebTable()
         wt.paginationwebtable()
         cy.get('div#HTML8 div div table tbody tr').find('td input').eq(3).should('be.checked')
     })
-    it('form',function()
-    {
+    it('form', function () {
         form.section1().type(this.data.name)
         cy.get('#btn1').click()
         //form.section1().should('have.text','test')
@@ -86,37 +90,64 @@ describe('automation', () => {
         cy.get('#btn3').click()
         //form.section3().should('have.text','Test@123456')
     })
-    it('shadowdom',()=>
-    {
-        sd.laptops().should('have.text','Laptops')
-        sd.mobiles().should('contain.text','Mobiles')
+    it('shadowdom', () => {
+        sd.laptops().should('have.text', 'Laptops')
+        sd.mobiles().should('contain.text', 'Mobiles')
         //sd.blog().url().should('include','https://www.pavantestingtools.com/')
         sd.textbox().type('test')
         sd.checkbox().check()
         sd.checkbox().should('be.checked')
         sd.file().click()
-        sd.youtube().should('contain.text','Youtube')
+        sd.youtube().should('contain.text', 'Youtube')
     })
-    it('footerlinks',()=>
-    {
-        fl.home().should('have.text','Home')
-        fl.hiddenelementandajax().should('have.text','Hidden Elements & AJAX')
-        fl.downloadfiles().should('have.text','Download Files')
+    it('footerlinks', () => {
+        fl.home().should('have.text', 'Home')
+        fl.hiddenelementandajax().should('have.text', 'Hidden Elements & AJAX')
+        fl.downloadfiles().should('have.text', 'Download Files')
     })
-    it('tabsdynamic',()=>
-    {
+    it('tabsdynamic', () => {
         td.tabs().type('te')
         td.searchbutton().click()
         td.startbutton().click()
         td.stopbutton().click()
-        td.startbutton().should('have.text','START')
+        td.startbutton().should('have.text', 'START')
     })
-    it.only('alertsandpopups',()=>
-    {
+    it('alertsandpopups', () => {
         ap.simplealert()
         ap.confirmationalert()
         ap.promptalert()
-        cy.get('p#demo').should('contain.text','test')
+        cy.get('p#demo').should('contain.text', 'test')
         ap.popup().click()
+    })
+    it('mouserdb', () => {
+        mdc.verifytextmh().should('have.text', 'Move the mouse over the button to open the dropdown menu.')
+        mdc.mousehover().click({ force: true })
+        mdc.selectvalue({ force: true })
+        mdc.doubleclicktextverify().should('have.text', 'Double Click')
+        mdc.copytextbutton().dblclick()
+        //mdc.verifyfield2text().should('contain.text','Hello')
+    })
+    it('dragdrop', () => {
+        dad.drag()
+            .trigger('mousedown', { which: 1 });
+
+        dad.drop()
+            .trigger('mousemove')
+            .trigger('mouseup', { force: true });
+
+        dad.drop()
+            .should('contain', 'Dropped!');
+    })
+    it('svgelements',()=>
+    {
+        se.redcolor().should('have.attr','fill','red')
+        se.greencolor().should('have.attr','fill','green')
+        se.bluecolor().should('have.attr','fill','blue')
+        
+    })
+    it.only('scrollingdropdown',()=>
+    {
+        sdd.inputdata().click()
+        cy.get('div#dropdown div').contains('Item 4').scrollIntoView().click()
     })
 })
