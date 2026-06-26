@@ -6,8 +6,9 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      specPattern: "cypress/e2e/AutomationTestPractice/*.cy.js"
       testIsolation: false;
     },
   },
-  specpattern: "cypress/e2e/AutomationTestPractice/*.cy.js"
+  
 });
