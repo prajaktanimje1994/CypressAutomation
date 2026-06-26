@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import Datepickers from "../../support/Datepickers"
+import Datepickers from "../../support/POMFolder/Datepickers"
 import AlertsandPopups from "../../support/POMFolder/AlertsandPopups"
 import Checkboxes from "../../support/POMFolder/Checkboxes"
 import Draganddrop from "../../support/POMFolder/Draganddrop"
